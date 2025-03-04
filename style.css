@@ -1,35 +1,35 @@
-.map-container {
+.map-container { /*style for the map container and ensures the map takes up the full viewport*/
     position: absolute;
     top: 0;
     bottom: 0;
     width: 100%;
 }
 
-.map-search-container {
+.map-search-container { /*style for the search container as an overlay on the map*/
     position: relative;
-    background: rgba(255, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 0.8); /*background color with opacity*/
     top: 0;
     left: 0;
     width: 260px;
-    margin: 10px 0 0 10px;
+    margin: 10px 0 0 10px; /*margin to ensure the container is not flush with the edge of the viewport*/
     padding: 10px;
-    border-radius: 8px;
+    border-radius: 8px; /*rounded corners for the container*/
     overflow: visible;
 }
 
-.geocoder {
+.geocoder { /* positioning for the geocoder search box */
     position: relative;
     margin: 10px 0 10px;
 }
 
-#returnbutton {
+#returnbutton { /* styling for the return button to reset the map view*/
     position: relative;
     background-color: #8ec3ff;
     margin: 10px 0 10px;
     width: 100%;
 }
 
-.map-data-container {
+.map-data-container { /*style the panel for map filters and controls*/
     position: relative;
     background: rgba(255, 255, 255, 0.8);
     width: 260px;
@@ -42,23 +42,23 @@
 }
 
 .option-label {
-    font: 15px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    font: 15px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif; /*font style for the labels*/
     font-weight: bold;
     width: 95%;
     padding-bottom: 8px;
 }
 
-.form-check-label {
+.form-check-label { /*style for the checkboxes*/ 
     font: 14px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
 }
 
-form {
+form { /*Adds spacing below form elements*/
     padding-bottom: 20px;
 }
 
-.legend {
+.legend { /*style for the legend container*/
     position: absolute;
-    display: none;
+    display: none; /*hide the legend by default, toggled by Javascript*/
     background-color: #fff;
     border-radius: 3px;
     bottom: 0;
@@ -71,7 +71,7 @@ form {
     z-index: 1;
 }
 
-.legend h4 {
+.legend h4 { /*style for the legend title*/
     margin: 0 0 10px;
 }
 

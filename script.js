@@ -6,28 +6,30 @@ Adding elements and interactivity to the map (JavaScript legend and events)
 /*--------------------------------------------------------------------
 INITIALISE MAP
 --------------------------------------------------------------------*/
-mapboxgl.accessToken = 'pk.eyJ1IjoibGlseWRlbmciLCJhIjoiY201eGIwOG5jMDB6ZDJqcHJrdGtudzVscSJ9.-cRhTqv-44DxjWWHAi9GmQ'; //***ADD YOUR ACCESS TOKEN HERE***
+mapboxgl.accessToken = 'pk.eyJ1IjoibGlseWRlbmciLCJhIjoiY201eGIwOG5jMDB6ZDJqcHJrdGtudzVscSJ9.-cRhTqv-44DxjWWHAi9GmQ'; //replaced with my own token
 
 const map = new mapboxgl.Map({
     container: 'map',
-    style: 'mapbox://styles/lilydeng/cm7p7o49v019301qsd8cp0uqa', // or select existing mapbox style - https://docs.mapbox.com/api/maps/styles/
-    center: [-96.386709, 60.049787],
-    zoom: 4,
+    style: 'mapbox://styles/lilydeng/cm7p7o49v019301qsd8cp0uqa', // replaced with my own style
+    center: [-96.386709, 60.049787], //chosen based on Mapbox center I picked
+    zoom: 4, //chose this one so one can see the entire country
 });
 
 
 /*--------------------------------------------------------------------
 MAP CONTROLS
 --------------------------------------------------------------------*/
+map.addControl(new mapboxgl.NavigationControl()); // Add zoom and rotation controls to the map
+map.addControl(new mapboxgl.FullscreenControl()); // Add full screen control to the map
 
-map.addControl(new mapboxgl.FullscreenControl());
-
+// Instantiate the geocoder plguin for location search
 const geocoder = new MapboxGeocoder({
     accessToken: mapboxgl.accessToken,
     mapboxgl: mapboxgl,
     countries: "ca"
 });
 
+// Append geocoder search box to the designated div in the html
 document.getElementById('geocoder').appendChild(geocoder.onAdd(map));
 
 
@@ -35,12 +37,12 @@ document.getElementById('geocoder').appendChild(geocoder.onAdd(map));
 ACCESS AND VISUALIZE DATA
 --------------------------------------------------------------------*/
 //Add data source and draw initial visiualization of layer
-map.on('load', () => {
+map.on('load', () => { // Wait for the map to load before adding data layers
     map.addSource('canada-provterr', {
         'type': 'vector',
         'url': 'mapbox://lgsmith.843obi8n'
     });
-
+//Add a fill layer to visualize the Province data
     map.addLayer({
         'id': 'provterr-fill',
         'type': 'fill',
@@ -50,10 +52,10 @@ map.on('load', () => {
                 'step', // STEP expression produces stepped results based on value pairs
                 ['get', 'POP2021'], // GET expression retrieves property value from 'population' data field
                 '#fd8d3c', // Colour assigned to any values < first step
-                100000, '#fc4e2a', // Colours assigned to values >= each step
+                100000, '#fc4e2a', // Colours assigned to values >= each step -> Population < 100,000
                 500000, '#e31a1c',
                 1000000, '#bd0026',
-                5000000, '#800026'
+                5000000, '#800026' //Population > 5,000,000
             ],
             'fill-opacity': 0.5,
             'fill-outline-color': 'white'
@@ -67,7 +69,7 @@ map.on('load', () => {
 /*--------------------------------------------------------------------
 CREATE LEGEND IN JAVASCRIPT
 --------------------------------------------------------------------*/
-//Declare array variables for labels and colours
+// Define legend labels and correpsonding colours
 const legendlabels = [
     '0-100,000',
     '100,000-500,000',
@@ -87,7 +89,7 @@ const legendcolours = [
 //Declare legend variable using legend div tag
 const legend = document.getElementById('legend');
 
-//For each layer create a block to put the colour and label in
+//For each layer create a block to put the colour and label in so it can populate the legend dynamically
 legendlabels.forEach((label, i) => {
     const colour = legendcolours[i];
 
@@ -167,7 +169,7 @@ document.getElementById("boundaryfieldset").addEventListener('change',(e) => {
     }
 
 });
-map.on('click', 'listing_data', (e) => {
+map.on('click', 'listing_data', (e) => { // display popup with area information when a feature is clicked
     console.log('Click event triggered');
     console.log('Event features:', e.features);
 
@@ -184,9 +186,7 @@ map.on('click', 'listing_data', (e) => {
     }
 });
 
-
-
-
+// Change the cursor to a pointer when the mouse is over the layer.
 map.on('mouseenter', 'listing_data', () => {
     map.getCanvas().style.cursor = 'pointer';
 });
@@ -195,7 +195,7 @@ map.on('mouseenter', 'listing_data', () => {
 map.on('mouseleave', 'listing_data', () => {
     map.getCanvas().style.cursor = '';
 });
-
+// Load Additional Geojson Data
 map.addControl(new mapboxgl.NavigationControl());
 //This loads the map so it can be seen
 map.on('load', () => {
@@ -220,7 +220,7 @@ map.addLayer({
             1000000, '#bd0026',
             5000000, '#800026'
         ],
-        'fill-opacity': 0,
+        'fill-opacity': 0, // this is 0 as i only needed this layer for the POP2021 input as I had issue with having it using the original layer
         'fill-outline-color': 'white'
     },
 

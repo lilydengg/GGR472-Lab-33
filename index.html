@@ -5,17 +5,17 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Week 8 d</title>
-    <!-- mapbox GL JS -->
+    <title>Week 8 Lab</title>
+    <!-- mapbox GL JS Library for rendering interactive maps -->
     <script src='https://api.mapbox.com/mapbox-gl-js/v3.9.4/mapbox-gl.js'></script>
     <link href='https://api.mapbox.com/mapbox-gl-js/v3.9.4/mapbox-gl.css' rel='stylesheet' />
-    <!-- mapbox geocoder plugin -->
+    <!-- mapbox geocoder plugin for searching locations-->
     <script
         src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.3/mapbox-gl-geocoder.min.js"></script>
     <link rel="stylesheet"
         href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.3/mapbox-gl-geocoder.css"
         type="text/css">
-    <!-- Bootstrap -->
+    <!-- Bootstrap styling and responsiveness -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <!-- CSS -->
@@ -24,34 +24,34 @@
 
 <body>
 
-    <!-- MAP CONTAINER -->
+    <!-- MAP CONTAINER where the map will be rendered-->
     <div id='map' class='map-container'></div>
 
-    <!-- NAVIGATION ELEMENTS -->
+    <!-- NAVIGATION ELEMENTS and search elements-->
     <div class='map-search-container'>
         <label class="option-label" for="geocoder">Search for location</label>
         <div id="geocoder" class="geocoder"></div>
         <button type="button" class="btn btn-primary btn-sm" id="returnbutton">Return to full extent</button>
     </div>
 
-    <!-- LEGEND -->
+    <!-- LEGEND for displaying map information-->
     <div id='legend' class='legend'>
         <h4>Population</h4>
         <!-- Contents of legend will now be added here -->
     </div>
 
-    <!-- INTERACTIVITY -->
+    <!-- Map INTERACTIVITY and filters-->
 
     <div class='map-data-container'>
         <label class="option-label" for="layercheck">Filter map view</label>
 
-        <!-- Checkbox to show/hide layer -->
+        <!-- Checkbox to toggle the visibility of a layer -->
         <div class="form-check">
             <input class="form-check-input" type="checkbox" value="" id="layercheck" checked>
             <label class="form-check-label" for="layercheck">Show layer</label>
         </div>
 
-        <!-- Checkbox to show/hide legend -->
+        <!-- Checkbox to toggle the legend visibility -->
         <div class="form-check">
             <input class="form-check-input" type="checkbox" value="" id="legendcheck">
             <label class="form-check-label" for="legendcheck">Show legend</label>
@@ -72,8 +72,9 @@
         </form>
 
     </div>
-
+<!-- JavaScript  -->
     <script src="script.js"></script> <!
+    <!-- Bootstrap JS Bundle for additional functionalities-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
